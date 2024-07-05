@@ -1,127 +1,232 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Github API Documentation</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f4f4f4;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            text-align: center;
-        }
-        h2 {
-            border-bottom: 2px solid #ddd;
-            padding-bottom: 10px;
-        }
-        .endpoint {
-            margin-bottom: 20px;
-        }
-        .endpoint code {
-            display: block;
-            background: #f9f9f9;
-            padding: 10px;
-            border-radius: 4px;
-            border: 1px solid #ddd;
-            margin-bottom: 10px;
-        }
-        .params, .queries, .examples, .errors {
-            margin-bottom: 10px;
-        }
-        .param-item, .query-item, .error-item {
-            margin-bottom: 5px;
-        }
-        .param-item span, .query-item span, .error-item span {
-            font-weight: bold;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Documentación de API de Noticias</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 20px;
+      padding: 20px;
+    }
+    h1, h2, h3 {
+      color: #333;
+    }
+    h2 {
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 5px;
+    }
+    .endpoint {
+      margin-bottom: 20px;
+    }
+    .endpoint-description {
+      margin-bottom: 10px;
+    }
+    .endpoint-example {
+      margin-bottom: 10px;
+      padding: 10px;
+      background-color: #f9f9f9;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .endpoint-example code {
+      display: block;
+      margin: 5px 0;
+      padding: 5px;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+    .response {
+      margin-top: 10px;
+      padding: 10px;
+      background-color: #f0f0f0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .response code {
+      display: block;
+      margin: 5px 0;
+      padding: 5px;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+    .error {
+      color: #d9534f;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Github API Documentation</h1>
-        
-        <div class="endpoint">
-            <h2>1. Get User Information</h2>
-            <p><strong>Method:</strong> GET</p>
-            <p><strong>Endpoint:</strong> <code>/api/github/user/:username</code></p>
-            <div class="params">
-                <h3>Path Parameters:</h3>
-                <div class="param-item"><span>:username</span> (string) - GitHub username to get information about.</div>
-            </div>
-            <div class="queries">
-                <h3>Query Parameters (Optional):</h3>
-                <div class="query-item"><span>include_repos</span> (boolean) - Whether to include details about the user's public repositories. Default is <code>false</code></div>
-            </div>
-            <div class="examples">
-                <h3>Example:</h3>
-                <code>/api/github/user/username?include_repos=true</code>
-            </div>
-            <div class="errors">
-                <h3>Possible Errors:</h3>
-                <div class="error-item"><span>404 Not Found:</span> The provided username does not exist.</div>
-                <div class="error-item"><span>400 Bad Request:</span> The parameter <code>username</code> is not valid.</div>
-                <div class="error-item"><span>500 Internal Server Error:</span> Server error while processing the request.</div>
-            </div>
-        </div>
+  <h1>Documentación de API de Noticias</h1>
 
-        <div class="endpoint">
-            <h2>2. Get User Repositories</h2>
-            <p><strong>Method:</strong> GET</p>
-            <p><strong>Endpoint:</strong> <code>/api/github/user/:username/repos</code></p>
-            <div class="params">
-                <h3>Path Parameters:</h3>
-                <div class="param-item"><span>:username</span> (string) - GitHub username to get repositories for.</div>
-            </div>
-            <div class="queries">
-                <h3>Query Parameters (Optional):</h3>
-                <div class="query-item"><span>sort</span> (string) - Criterion to sort repositories. Possible values: <code>created</code> <code>updated</code> <code>pushed</code> <code>full_name</code> Default is <code>full_name</code></div>
-                <div class="query-item"><span>direction</span> (string) - Direction of sorting. Possible values: <code>asc</code> <code>desc</code> Default is <code>asc</code></div>
-            </div>
-            <div class="examples">
-                <h3>Example:</h3>
-                <code>/api/github/user/username/repos?sort=updated&direction=desc</code>
-            </div>
-            <div class="errors">
-                <h3>Possible Errors:</h3>
-                <div class="error-item"><span>404 Not Found:</span> The provided username does not exist.</div>
-                <div class="error-item"><span>400 Bad Request:</span> The parameter <code>username</code> is not valid.</div>
-                <div class="error-item"><span>500 Internal Server Error:</span> Server error while processing the request.</div>
-            </div>
-        </div>
-
-        <div class="endpoint">
-            <h2>3. Get Repository Details</h2>
-            <p><strong>Method:</strong> GET</p>
-            <p><strong>Endpoint:</strong> <code>/api/github/user/:username/repos/:repo</code></p>
-            <div class="params">
-                <h3>Path Parameters:</h3>
-                <div class="param-item"><span>:username</span> (string) - GitHub username.</div>
-                <div class="param-item"><span>:repo</span> (string) - Name of the repository.</div>
-            </div>
-            <div class="examples">
-                <h3>Example:</h3>
-                <code>/api/github/user/:username/repos/:repo</code>
-            </div>
-            <div class="errors">
-                <h3>Possible Errors:</h3>
-                <div class="error-item"><span>404 Not Found:</span> The provided repository does not exist.</div>
-                <div class="error-item"><span>400 Bad Request:</span> The parameter <code>username</code> or <code>repo</code> is not valid.</div>
-                <div class="error-item"><span>500 Internal Server Error:</span> Server error while processing the request.</div>
-            </div>
-        </div>
-
+  <div class="endpoint">
+    <h2>Obtener Artículos</h2>
+    <p class="endpoint-description">Recupera una lista de artículos de noticias basados en los parámetros de búsqueda y filtrado proporcionados.</p>
+    <div class="endpoint-example">
+      <h3>Ejemplo de Solicitud</h3>
+      <code>GET /api/articles?query=bitcoin&category=technology&pageSize=5</code>
     </div>
+    <div class="response">
+      <h3>Respuesta Exitosa</h3>
+      <code>
+        {
+          "status": "success",
+          "data": [
+            {
+              "title": "Artículo 1",
+              "description": "Descripción del artículo 1",
+              "author": "Autor del artículo 1",
+              "publishedAt": "2024-07-05T12:00:00Z",
+              ...
+            },
+            {
+              "title": "Artículo 2",
+              "description": "Descripción del artículo 2",
+              "author": "Autor del artículo 2",
+              "publishedAt": "2024-07-05T11:00:00Z",
+              ...
+            },
+            ...
+          ]
+        }
+      </code>
+    </div>
+    <div class="response">
+      <h3>Ejemplo de Error</h3>
+      <code class="error">
+        {
+          "status": "error",
+          "message": "Error al recuperar los artículos"
+        }
+      </code>
+      <p>Posibles errores:</p>
+      <ul>
+        <li><strong>404 Not Found:</strong> Cuando no se encuentran artículos que coincidan con los criterios de búsqueda.</li>
+        <li><strong>500 Internal Server Error:</strong> Error interno del servidor al procesar la solicitud.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="endpoint">
+    <h2>Obtener Eventos Destacados (Breaking Events)</h2>
+    <p class="endpoint-description">Recupera una lista de eventos de última hora basados en los parámetros de búsqueda y filtrado proporcionados.</p>
+    <div class="endpoint-example">
+      <h3>Ejemplo de Solicitud</h3>
+      <code>GET /api/breaking-events?category=politics&pageSize=3</code>
+    </div>
+    <div class="response">
+      <h3>Respuesta Exitosa</h3>
+      <code>
+        {
+          "status": "success",
+          "data": [
+            {
+              "title": "Evento 1",
+              "description": "Descripción del evento 1",
+              "source": "Fuente del evento 1",
+              "publishedAt": "2024-07-05T14:00:00Z",
+              ...
+            },
+            {
+              "title": "Evento 2",
+              "description": "Descripción del evento 2",
+              "source": "Fuente del evento 2",
+              "publishedAt": "2024-07-05T13:00:00Z",
+              ...
+            },
+            ...
+          ]
+        }
+      </code>
+    </div>
+    <div class="response">
+      <h3>Ejemplo de Error</h3>
+      <code class="error">
+        {
+          "status": "error",
+          "message": "Error al recuperar eventos destacados"
+        }
+      </code>
+      <p>Posibles errores:</p>
+      <ul>
+        <li><strong>500 Internal Server Error:</strong> Error interno del servidor al procesar la solicitud.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="endpoint">
+    <h2>Obtener Detalles de un Artículo por ID</h2>
+    <p class="endpoint-description">Obtiene los detalles completos de un artículo específico utilizando su identificador único.</p>
+    <div class="endpoint-example">
+      <h3>Ejemplo de Solicitud</h3>
+      <code>GET /api/articles/12345</code>
+    </div>
+    <div class="response">
+      <h3>Respuesta Exitosa</h3>
+      <code>
+        {
+          "status": "success",
+          "data": {
+            "title": "Artículo 12345",
+            "description": "Descripción del artículo 12345",
+            "author": "Autor del artículo 12345",
+            "publishedAt": "2024-07-05T10:00:00Z",
+            ...
+          }
+        }
+      </code>
+    </div>
+    <div class="response">
+      <h3>Ejemplo de Error</h3>
+      <code class="error">
+        {
+          "status": "error",
+          "message": "Artículo no encontrado"
+        }
+      </code>
+      <p>Posibles errores:</p>
+      <ul>
+        <li><strong>404 Not Found:</strong> Cuando el artículo con el ID especificado no se encuentra.</li>
+        <li><strong>500 Internal Server Error:</strong> Error interno del servidor al procesar la solicitud.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="endpoint">
+    <h2>Estado de la API</h2>
+    <p class="endpoint-description">Verifica el estado de la API para asegurarse de que esté en funcionamiento.</p>
+    <div class="endpoint-example">
+      <h3>Ejemplo de Solicitud</h3>
+      <code>GET /api/health</code>
+    </div>
+    <div class="response">
+      <h3>Respuesta Exitosa</h3>
+      <code>
+        {
+          "status": "API is running",
+          "newsAPIConnection": "OK"
+        }
+      </code>
+    </div>
+    <div class="response">
+      <h3>Ejemplo de Error</h3>
+      <code class="error">
+        {
+          "status": "error",
+          "message": "Error al verificar la conexión con la API de noticias"
+        }
+      </code>
+      <p>Posibles errores:</p>
+      <ul>
+        <li><strong>503 Service Unavailable:</strong> Cuando la API de noticias no está disponible.</li>
+        <li><strong>500 Internal Server Error:</strong> Error interno del servidor al procesar la solicitud.</li>
+      </ul>
+    </div>
+  </div>
+
 </body>
 </html>
